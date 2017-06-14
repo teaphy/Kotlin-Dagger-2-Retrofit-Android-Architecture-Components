@@ -1,0 +1,5 @@
+<resources>
+	<string name="app_name">ArchitectureDemo</string>
+	
+	<string name="room">Room</string>
+</resources>

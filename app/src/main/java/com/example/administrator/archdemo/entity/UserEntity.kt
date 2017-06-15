@@ -1,10 +1,9 @@
 package com.example.administrator.archdemo.entity
 
-import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
-import android.os.Parcel
-import android.os.Parcelable
+
 
 /**
  * @desc
@@ -21,8 +20,9 @@ import android.os.Parcelable
 //    var id: Int = 0
 //}
 
-@Entity(tableName = "user")
-data class UserEntity ( val name: String,val isBrrowed: Boolean) {
+@Entity(tableName = "user", indices = arrayOf(Index(value = *arrayOf("name", "isBrrowed"), unique = true)))
+    data class UserEntity (val name: String,val isBrrowed: Int) {
+
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 }

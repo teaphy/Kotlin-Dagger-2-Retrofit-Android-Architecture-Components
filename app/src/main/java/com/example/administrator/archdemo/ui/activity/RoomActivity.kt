@@ -12,16 +12,14 @@ import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.entity.UserEntity
 import com.example.administrator.archdemo.ui.adapter.UserAdapter
 import kotlinx.android.synthetic.main.activity_room.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.*
 
 /**
  * @desc  Room
  * @author Teaphy
  * @date 2017/6/6
  */
-class RoomActivity : BaseActivity() {
+class RoomActivity : BaseActivity(), AnkoLogger {
 
     val DATABASE_NAME = "test"
 
@@ -44,7 +42,6 @@ class RoomActivity : BaseActivity() {
     }
 
     override fun initData() {
-
     }
 
     override fun initView() {
@@ -70,7 +67,7 @@ class RoomActivity : BaseActivity() {
                 val users: MutableList<UserEntity> = mutableListOf()
 
                 (0..10).mapTo(users) {
-                    val user = UserEntity( "Test - $id", id % 2 == 0)
+                    val user = UserEntity( "Test - $it", it)
                     id++
                     user
                 }
@@ -87,11 +84,51 @@ class RoomActivity : BaseActivity() {
         }
 
         acb_update.setOnClickListener {
+            doAsync {
+                val users: MutableList<UserEntity> = mutableListOf()
 
+                id = 1
+
+                (1..2).mapTo(users) {
+                    val user = UserEntity("update - $it", it)
+                    user.id = it
+                    user
+                }
+
+                mDataBase?.beginTransaction()
+
+                try {
+                    val update = mDataBase?.userDao()?.updateUser(users)
+                    Log.d("123", "update:$update")
+                    mDataBase?.setTransactionSuccessful()
+                } finally {
+                    mDataBase?.endTransaction()
+                }
+            }
         }
 
         acb_delete.setOnClickListener {
+            doAsync {
+                val users: MutableList<UserEntity> = mutableListOf()
 
+                id = 1
+
+                (1..10).mapTo(users) {
+                    val user = UserEntity("Test - $it", it)
+                    user.id = it
+                    user
+                }
+
+                mDataBase?.beginTransaction()
+
+                try {
+                    val del = mDataBase?.userDao()?.deleteUser(users)
+                    Log.d("123", "del: $del")
+                    mDataBase?.setTransactionSuccessful()
+                } finally {
+                    mDataBase?.endTransaction()
+                }
+            }
         }
 
         acb_query.setOnClickListener {

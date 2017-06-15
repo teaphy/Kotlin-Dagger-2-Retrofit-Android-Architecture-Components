@@ -15,22 +15,22 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(vararg user: UserEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUser(users: List<UserEntity>)
 
     // 更新表中一系列数据
     @Update
-    fun updateUser(vararg user: UserEntity)
+    fun updateUser(vararg user: UserEntity): Int
 
     @Update
-    fun updateUser(users: List<UserEntity>)
+    fun updateUser(users: List<UserEntity>): Int
 
     // 删除表中的数据
     @Delete
-    fun deleteUser(vararg user: UserEntity)
+    fun deleteUser(vararg user: UserEntity): Int
 
     @Delete
-    fun deleteUser(users: List<UserEntity>)
+    fun deleteUser(users: List<UserEntity>): Int
 
     // 查询数据
     @Query("SELECT * FROM user")

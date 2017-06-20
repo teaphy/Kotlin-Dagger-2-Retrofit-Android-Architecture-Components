@@ -6,6 +6,7 @@ import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.webkit.WebViewClient
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseActivity
 import com.example.administrator.archdemo.db.AppDatabase
@@ -31,6 +32,7 @@ class RoomActivity : BaseActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun getLayoutId(): Int {
@@ -58,6 +60,7 @@ class RoomActivity : BaseActivity(), AnkoLogger {
                 applicationContext.deleteDatabase(DATABASE_NAME)
                 mDataBase = Room.databaseBuilder(applicationContext,
                         AppDatabase::class.java, DATABASE_NAME)
+                        .allowMainThreadQueries()
                         .build()
             }
         }

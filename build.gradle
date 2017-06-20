@@ -1,18 +1,18 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.1.2-5'
+    ext.kotlin_version = '1.1.2-4'
     ext.surpport_version = '26.0.0-alpha1'
     ext.anko_version = "0.10.1"
-    ext.room_version = "1.0.0-alpha1"
-    ext.arch_version = "1.0.0-alpha1"
+    ext.room_version = "1.0.0-alpha3"
+    ext.arch_version = "1.0.0-alpha3"
 
     repositories {
-        maven { url 'https://maven.google.com' }
+        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha3'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -22,7 +22,7 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.google.com' }
+        google()
         jcenter()
         mavenCentral()
     }

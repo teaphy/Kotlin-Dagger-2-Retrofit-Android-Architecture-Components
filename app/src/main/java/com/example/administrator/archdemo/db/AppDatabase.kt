@@ -3,7 +3,9 @@ package com.example.administrator.archdemo.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
+import com.example.administrator.archdemo.db.dao.BookDao
 import com.example.administrator.archdemo.db.dao.UserDao
+import com.example.administrator.archdemo.entity.BookEntity
 import com.example.administrator.archdemo.entity.UserEntity
 
 /**
@@ -13,7 +15,14 @@ import com.example.administrator.archdemo.entity.UserEntity
  * @date 2017/6/6
  */
 
-@Database(entities = arrayOf(UserEntity::class), version = 1)
+@Database(entities = arrayOf(UserEntity::class, BookEntity::class), version = 1)
 abstract class AppDatabase : RoomDatabase() {
+
+    companion object{
+        val DATABASE_NAME = "test"
+    }
+
     abstract fun userDao(): UserDao
+
+    abstract fun bookDao(): BookDao
 }

@@ -9,6 +9,7 @@ import android.util.Log
 import android.webkit.WebViewClient
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseActivity
+import com.example.administrator.archdemo.base.BaseToolbarActivity
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.entity.UserEntity
 import com.example.administrator.archdemo.ui.adapter.UserAdapter
@@ -20,7 +21,7 @@ import org.jetbrains.anko.*
  * @author Teaphy
  * @date 2017/6/6
  */
-class RoomActivity : BaseActivity(), AnkoLogger {
+class RoomActivity : BaseToolbarActivity(), AnkoLogger {
 
     val DATABASE_NAME = "test"
 
@@ -60,7 +61,6 @@ class RoomActivity : BaseActivity(), AnkoLogger {
                 applicationContext.deleteDatabase(DATABASE_NAME)
                 mDataBase = Room.databaseBuilder(applicationContext,
                         AppDatabase::class.java, DATABASE_NAME)
-                        .allowMainThreadQueries()
                         .build()
             }
         }

@@ -18,12 +18,12 @@
 		android:textSize="16sp"/>
 	
 	<android.support.v7.widget.AppCompatButton
-		android:id="@+id/acb_diffUtil"
+		android:id="@+id/acb_book"
 		android:layout_width="96dp"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="8dp"
 		android:gravity="center"
 		android:textAllCaps="false"
-		android:text="DiffUtil"
+		android:text="Book"
 		android:textSize="16sp"/>
 </LinearLayout>

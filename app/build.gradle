@@ -44,7 +44,7 @@ allprojects {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -54,17 +54,25 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     // anko
     compile "org.jetbrains.anko:anko-commons:$anko_version"
-    // supportg
-    compile "com.android.support:appcompat-v7:$surpport_version"
-    compile "com.android.support:recyclerview-v7:$surpport_version"
+    // support
+    implementation "com.android.support:design:$surpport_version"
+    implementation "com.android.support:appcompat-v7:$surpport_version"
+    implementation "com.android.support:recyclerview-v7:$surpport_version"
     // architecture
     compile "android.arch.lifecycle:runtime:$arch_version"
     compile "android.arch.lifecycle:extensions:$arch_version"
-    annotationProcessor  "android.arch.lifecycle:compiler:$arch_version"
-    kapt  "android.arch.lifecycle:compiler:$arch_version"
+    kapt "android.arch.lifecycle:compiler:$arch_version"
     // room
     compile "android.arch.persistence.room:runtime:$room_version"
-    annotationProcessor  "android.arch.persistence.room:compiler:$room_version"
-    kapt  "android.arch.persistence.room:compiler:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
     compile "android.arch.persistence.room:rxjava2:$room_version"
+
+    // retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // dagger
+    compile "com.google.dagger:dagger:$dagger_version"
+    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

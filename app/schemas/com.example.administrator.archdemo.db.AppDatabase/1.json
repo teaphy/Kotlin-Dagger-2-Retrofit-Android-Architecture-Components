@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ed64a5a8b6d64f7f71d1ae19d3c21853",
+    "identityHash": "db6ed75d1c00385dfbc1a4a6debc6a8d",
     "entities": [
       {
         "tableName": "user",
@@ -42,11 +42,55 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "book",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `image` TEXT, `sortId` INTEGER, `brrowId` INTEGER, `brrowDate` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sortId",
+            "columnName": "sortId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "brrowId",
+            "columnName": "brrowId",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "brrowDate",
+            "columnName": "brrowDate",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ed64a5a8b6d64f7f71d1ae19d3c21853\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"db6ed75d1c00385dfbc1a4a6debc6a8d\")"
     ]
   }
 }

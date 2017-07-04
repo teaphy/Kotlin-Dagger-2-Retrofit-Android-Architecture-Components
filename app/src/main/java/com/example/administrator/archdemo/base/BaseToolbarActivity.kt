@@ -18,39 +18,27 @@ import javax.inject.Inject
  * @author Teaphy
  * @date 2017/6/6
  */
-abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, HasSupportFragmentInjector {
+abstract class BaseToolbarActivity : BaseActivity() {
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
-	lateinit var mRegistry: LifecycleRegistry
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(getLayoutId())
 
-        mRegistry = LifecycleRegistry(this)
-
-		initData()
-
-		initView()
-
-		setListener()
+		initToolbar()
 	}
 
-	abstract fun getLayoutId(): Int
+	private fun initToolbar() {
+		toolbar.title = initTitle()
+		toolbar.setTitleTextColor(resources.getColor(android.R.color.white))
 
-	abstract fun initData()
+		toolbar.navigationIcon = resources.getDrawable(R.mipmap.ic_back)
 
-	abstract fun initView()
+		setSupportActionBar(toolbar)
 
-	abstract fun setListener()
+		toolbar.setNavigationOnClickListener{
+			finish()
+		}
+	}
 
-    override fun getLifecycle(): LifecycleRegistry {
-        return mRegistry
-    }
-
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
-        return dispatchingAndroidInjector
-    }
+    abstract fun initTitle(): CharSequence?
 }

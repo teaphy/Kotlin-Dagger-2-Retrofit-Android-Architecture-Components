@@ -3,11 +3,13 @@ package com.example.administrator.archdemo.ui.activity
 import android.os.Bundle
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseActivity
+import com.example.administrator.archdemo.base.BaseToolbarActivity
+import com.example.administrator.archdemo.ui.book.BookActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseToolbarActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,8 @@ class MainActivity : BaseActivity() {
 		    startActivity<RoomActivity>()
 	    }
 
+        acb_book.setOnClickListener {
+            startActivity<BookActivity>()
+        }
     }
-    
 }

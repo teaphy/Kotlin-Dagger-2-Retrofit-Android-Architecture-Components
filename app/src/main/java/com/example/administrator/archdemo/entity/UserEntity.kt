@@ -21,7 +21,7 @@ import android.arch.persistence.room.PrimaryKey
 //}
 
 @Entity(tableName = "user", indices = arrayOf(Index(value = *arrayOf("name", "isBrrowed"), unique = true)))
-    data class UserEntity (val name: String,val isBrrowed: Int) {
+data class UserEntity(val name: String, val isBrrowed: Int) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

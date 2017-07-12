@@ -4,27 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:background="@color/colorEFEFF4"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.administrator.archdemo.ui.login.LoginActivity">
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/edit_name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入账号"
-        android:textSize="14sp" />
+        android:layout_height="96dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:focusable="true"
+        android:background="@drawable/shape_white_6"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/edit_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="请输入密码"
-        android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="14dp">
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iiv_color="@color/colorBD"
+                app:iiv_icon="@string/gmd_perm_identity"
+                app:iiv_size="16sp" />
+
+            <EditText
+                android:id="@+id/edit_id"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="请输入账号"
+                android:textSize="14sp"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1"
+                android:background="@null" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorF2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="14dp">
+
+
+            <com.mikepenz.iconics.view.IconicsImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:iiv_color="@color/colorBD"
+                app:iiv_icon="@string/gmd_lock"
+                app:iiv_size="16sp" />
+
+            <EditText
+                android:id="@+id/edit_password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:hint="请输入密码"
+                android:textSize="14sp"
+                android:layout_marginLeft="6dp"
+                android:layout_weight="1"
+                android:background="@null" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/acb_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
         android:text="登录" />
 </LinearLayout>

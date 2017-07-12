@@ -18,7 +18,7 @@ import javax.inject.Singleton
  * @author Tiany
  * @date 2017/7/4 0004
  */
-@Module
+@Module(includes = arrayOf(ViewModelModule::class))
 class AppModule {
 
     @Singleton

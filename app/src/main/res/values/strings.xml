@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ArchitectureDemo</string>
+    <string name="app_name">ArchDemo</string>
 
     <string name="room">Room</string>
     <string name="title_activity_login">Login</string>

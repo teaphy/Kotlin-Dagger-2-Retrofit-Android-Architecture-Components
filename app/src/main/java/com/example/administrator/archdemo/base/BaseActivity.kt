@@ -21,7 +21,8 @@ import javax.inject.Inject
 abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, HasSupportFragmentInjector {
 
     @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+	@JvmField
+    var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>? = null
 
 	lateinit var mRegistry: LifecycleRegistry
 
@@ -50,7 +51,7 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, HasSu
         return mRegistry
     }
 
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment>? {
         return dispatchingAndroidInjector
     }
 }

@@ -17,17 +17,16 @@
 package com.example.administrator.archdemo
 
 import com.example.administrator.archdemo.di.AppInjector
-import com.example.administrator.archdemo.di.DaggerArchComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import android.app.Activity
 import dagger.android.DispatchingAndroidInjector
 import javax.inject.Inject
 
-
 class ArchApp : DaggerApplication() {
 
     @Inject
+    @JvmField
     var dispatchingActivityInjector: DispatchingAndroidInjector<DaggerApplication>? = null
 
     override fun onCreate() {

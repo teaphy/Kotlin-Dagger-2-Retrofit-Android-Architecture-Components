@@ -75,4 +75,8 @@ dependencies {
     compile "com.google.dagger:dagger:$dagger_version"
     compile "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // IconFont
+    compile "com.mikepenz:iconics-core:2.8.9@aar"
+    compile 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
 }

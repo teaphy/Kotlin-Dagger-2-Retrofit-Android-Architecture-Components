@@ -1,6 +1,7 @@
-package com.example.administrator.archdemo.di
+package com.example.administrator.archdemo.di.component
 
 import android.app.Application
+import com.example.administrator.archdemo.di.module.ActivityBuilderModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -10,7 +11,9 @@ import dagger.android.AndroidInjectionModule
  * @author Tiany
  * @date 2017/7/4 0004
  */
-@Component(modules = arrayOf(AndroidInjectionModule::class))
+@Component(modules = arrayOf(
+        AndroidInjectionModule::class,
+        ActivityBuilderModule::class))
 interface ArchComponent {
 
     @Component.Builder

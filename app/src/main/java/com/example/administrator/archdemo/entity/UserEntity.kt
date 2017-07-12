@@ -11,17 +11,8 @@ import android.arch.persistence.room.PrimaryKey
  * @author Teaphy
  * @date 2017/6/6
  */
-//@Entity(tableName = "user")
-//data class UserEntity ( @ColumnInfo(name = "name")val name: String,
-//                                  @ColumnInfo(name = "is_brrowed")val isBrrowed: Int) {
-//    @JvmField
-//    @PrimaryKey(autoGenerate = true)
-//    @ColumnInfo(name = "id")
-//    var id: Int = 0
-//}
-
 @Entity(tableName = "user", indices = arrayOf(Index(value = *arrayOf("name", "isBrrowed"), unique = true)))
-data class UserEntity(val name: String, val isBrrowed: Int) {
+data class UserEntity(val name: String, val pwd: String, val isBrrowed: Int) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

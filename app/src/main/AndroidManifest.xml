@@ -24,7 +24,8 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.RoomActivity" />
-        <activity android:name=".ui.book.BookActivity"></activity>
+        <activity android:name=".ui.book.BookActivity" />
+        <activity android:name=".ui.lifecycle.PersonActivity"></activity>
     </application>
 
 </manifest>

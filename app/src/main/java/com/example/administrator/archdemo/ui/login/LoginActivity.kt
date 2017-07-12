@@ -1,10 +1,10 @@
 package com.example.administrator.archdemo.ui.login
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseActivity
 import com.example.administrator.archdemo.ui.activity.MainActivity
+import com.example.administrator.archdemo.ui.lifecycle.PersonActivity
 
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
@@ -35,9 +35,6 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun doLogin() {
-        val name = edit_name.text
-        val pwd = edit_pwd.text
-
-        startActivity<MainActivity>()
+        startActivity<PersonActivity>()
     }
 }

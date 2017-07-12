@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.base.BaseActivity
+import com.example.administrator.archdemo.base.BaseToolbarActivity
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.db.AppDatabase.Companion.DATABASE_NAME
 import com.example.administrator.archdemo.entity.BookEntity
@@ -23,7 +24,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class BookActivity : BaseActivity() {
+class BookActivity : BaseToolbarActivity() {
 
     lateinit var mViewModel: BookViewModel
     var mBookId: Int = 1

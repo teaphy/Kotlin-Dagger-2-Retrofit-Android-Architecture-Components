@@ -67,98 +67,102 @@ class RoomActivity : BaseToolbarActivity(), AnkoLogger {
 
         acb_insert.setOnClickListener {
             doAsync {
-                val users: MutableList<UserEntity> = mutableListOf()
-
-                (0..10).mapTo(users) {
-                    val user = UserEntity( "Test - $it", it)
-                    id++
-                    user
-                }
-
-                mDataBase?.beginTransaction()
-
-                try {
-                    mDataBase?.userDao()?.insertUser(users)
-                    mDataBase?.setTransactionSuccessful()
-                } finally {
-                    mDataBase?.endTransaction()
-                }
+                //                val users: MutableList<UserEntity> = mutableListOf()
+//
+//                (0..10).mapTo(users) {
+//                    val user = UserEntity( "Test - $it", it)
+//                    id++
+//                    user
+//                }
+//
+//                mDataBase?.beginTransaction()
+//
+//                try {
+//                    mDataBase?.userDao()?.insertUser(users)
+//                    mDataBase?.setTransactionSuccessful()
+//                } finally {
+//                    mDataBase?.endTransaction()
+//                }
             }
         }
 
         acb_update.setOnClickListener {
-            doAsync {
-                val users: MutableList<UserEntity> = mutableListOf()
-
-                id = 1
-
-                (1..2).mapTo(users) {
-                    val user = UserEntity("update - $it", it)
-                    user.id = it
-                    user
-                }
-
-                mDataBase?.beginTransaction()
-
-                try {
-                    val update = mDataBase?.userDao()?.updateUser(users)
-                    Log.d("123", "update:$update")
-                    mDataBase?.setTransactionSuccessful()
-                } finally {
-                    mDataBase?.endTransaction()
-                }
-            }
-        }
-
-        acb_delete.setOnClickListener {
-            doAsync {
-                val users: MutableList<UserEntity> = mutableListOf()
-
-                id = 1
-
-                (1..10).mapTo(users) {
-                    val user = UserEntity("Test - $it", it)
-                    user.id = it
-                    user
-                }
-
-                mDataBase?.beginTransaction()
-
-                try {
-                    val del = mDataBase?.userDao()?.deleteUser(users)
-                    Log.d("123", "del: $del")
-                    mDataBase?.setTransactionSuccessful()
-                } finally {
-                    mDataBase?.endTransaction()
-                }
-            }
-        }
-
-        acb_query.setOnClickListener {
-            var users: List<UserEntity>? = null
-            doAsync {
-                mDataBase?.beginTransaction()
-
-                try {
-                    users = mDataBase?.userDao()?.queryAll()
-                    Log.i("123", users?.toString())
-                    mDataBase?.setTransactionSuccessful()
-                } finally {
-                    mDataBase?.endTransaction()
-                }
-
-                runOnUiThread {
-                    mList.clear()
-                    mList.addAll(mList.size, users!!.toList())
-                    mAdapterUser.notifyDataSetChanged()
-                }
-            }
-
 
         }
-    }
+        doAsync {
+            //                val users: MutableList<UserEntity> = mutableListOf()
+//
+//                id = 1
+//
+//                (1..2).mapTo(users) {
+//                    val user = UserEntity("update - $it", it)
+//                    user.id = it
+//                    user
+//                }
+//
+//                mDataBase?.beginTransaction()
+//
+//                try {
+//                    val update = mDataBase?.userDao()?.updateUser(users)
+//                    Log.d("123", "update:$update")
+//                    mDataBase?.setTransactionSuccessful()
+//                } finally {
+//                    mDataBase?.endTransaction()
+//                }
+//            }
+//        }
+//
+//        acb_delete.setOnClickListener {
+//            doAsync {
+//                val users: MutableList<UserEntity> = mutableListOf()
+//
+//                id = 1
+//
+//                (1..10).mapTo(users) {
+//                    val user = UserEntity("Test - $it", it)
+//                    user.id = it
+//                    user
+//                }
+//
+//                mDataBase?.beginTransaction()
+//
+//                try {
+//                    val del = mDataBase?.userDao()?.deleteUser(users)
+//                    Log.d("123", "del: $del")
+//                    mDataBase?.setTransactionSuccessful()
+//                } finally {
+//                    mDataBase?.endTransaction()
+//                }
+//            }
+//        }
+//
+//        acb_query.setOnClickListener {
+//            var users: List<UserEntity>? = null
+//            doAsync {
+//                mDataBase?.beginTransaction()
+//
+//                try {
+//                    users = mDataBase?.userDao()?.queryAll()
+//                    Log.i("123", users?.toString())
+//                    mDataBase?.setTransactionSuccessful()
+//                } finally {
+//                    mDataBase?.endTransaction()
+//                }
+//
+//                runOnUiThread {
+//                    mList.clear()
+//                    mList.addAll(mList.size, users!!.toList())
+//                    mAdapterUser.notifyDataSetChanged()
+//                }
+//            }
+//
+//
+//        }
+//    }
 
-    fun showToast(content: String) {
-        toast(content)
+            fun showToast(content: String) {
+                toast(content)
+            }
+        }
     }
 }

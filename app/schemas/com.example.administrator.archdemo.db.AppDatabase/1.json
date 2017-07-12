@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "db6ed75d1c00385dfbc1a4a6debc6a8d",
+    "identityHash": "7ccfb3a0d358515a669ca5a8666dfb64",
     "entities": [
       {
         "tableName": "user",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `isBrrowed` INTEGER)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT, `pwd` TEXT, `isBrrowed` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -16,6 +16,11 @@
           {
             "fieldPath": "name",
             "columnName": "name",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pwd",
+            "columnName": "pwd",
             "affinity": "TEXT"
           },
           {
@@ -90,7 +95,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"db6ed75d1c00385dfbc1a4a6debc6a8d\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7ccfb3a0d358515a669ca5a8666dfb64\")"
     ]
   }
 }

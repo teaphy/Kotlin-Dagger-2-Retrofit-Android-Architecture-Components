@@ -19,7 +19,8 @@ package com.example.administrator.archdemo
 import com.example.administrator.archdemo.di.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
-import android.app.Activity
+import android.app.Application
+import com.example.administrator.archdemo.base.AppManager
 import dagger.android.DispatchingAndroidInjector
 import javax.inject.Inject
 
@@ -29,15 +30,36 @@ class ArchApp : DaggerApplication() {
     @JvmField
     var dispatchingActivityInjector: DispatchingAndroidInjector<DaggerApplication>? = null
 
+    @Inject
+    var mAppManager: AppManager? = null
+
+    var mApplication: Application? = null
+
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
         }
+
+        mApplication = this
 
         AppInjector.init(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
         return dispatchingActivityInjector
+    }
+
+    /**
+     * 程序终止的时候执行
+     */
+    override fun onTerminate() {
+        super.onTerminate()
+
+        if (mAppManager != null) {//释放资源
+            this.mAppManager?.release()
+            this.mAppManager = null
+        }
+        if (mApplication != null)
+            this.mApplication = null
     }
 }

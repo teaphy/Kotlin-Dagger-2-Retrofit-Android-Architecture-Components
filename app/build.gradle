@@ -79,4 +79,7 @@ dependencies {
     // IconFont
     compile "com.mikepenz:iconics-core:2.8.9@aar"
     compile 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
+
+    // Timber
+    compile 'com.jakewharton.timber:timber:4.5.1'
 }

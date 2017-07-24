@@ -2,6 +2,7 @@ package com.example.administrator.archdemo.di.module
 
 import android.app.Application
 import android.arch.persistence.room.Room
+import android.content.Context
 import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.global.DbObject
@@ -23,6 +24,12 @@ class AppModule {
 
     @Singleton
     @Provides
+    fun provideApplicationContext(app: Application) : Context{
+        return  app.applicationContext
+    }
+
+    @Singleton
+    @Provides
     fun provideArchService(): ArchService {
         return Retrofit.Builder()
                 .baseUrl(UrlObject.URL_BASE)
@@ -34,7 +41,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providerDb(app: Application): AppDatabase {
+    fun providerDb(app: Context): AppDatabase {
         return Room.databaseBuilder(app, AppDatabase::class.java!!, DbObject.NAME_DATABASE).build()
     }
 

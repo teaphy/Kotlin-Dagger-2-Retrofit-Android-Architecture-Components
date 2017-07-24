@@ -19,8 +19,9 @@ interface ArchComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        abstract fun application(application: Application): Builder
-        abstract fun build(): ArchComponent
+        fun application(application: Application): Builder
+
+        fun build(): ArchComponent
     }
 
     fun inject(application: Application)

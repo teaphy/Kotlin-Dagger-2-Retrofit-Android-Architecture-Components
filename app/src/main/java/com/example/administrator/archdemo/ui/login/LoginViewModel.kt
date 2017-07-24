@@ -19,4 +19,6 @@ class LoginViewModel(archApp: Application) : AndroidViewModel(archApp) {
 
     @Inject
     constructor(archApp: Application, loginRepository: LoginRepository) : this(archApp)
+
+
 }

@@ -16,4 +16,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="prompt_intput_pwd">请输入密码</string>
+    <string name="prompt_input_id">请输入账号</string>
 </resources>

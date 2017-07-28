@@ -49,6 +49,15 @@
         android:layout_height="wrap_content"
         android:padding="6dp"
         android:textAllCaps="false"
-        android:textColor="#FF0000"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvMedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
         android:layout_marginTop="8dp"/>
 </LinearLayout>

@@ -1,6 +1,7 @@
 
 package com.example.administrator.archdemo.db.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.example.administrator.archdemo.entity.UserEntity
 
@@ -35,4 +36,8 @@ interface UserDao {
     // 查询数据
     @Query("SELECT * FROM user")
     fun queryAll(): List<UserEntity>?
+
+    // 查询数据
+    @Query("SELECT * FROM user WHERE name = :name")
+    fun queryByName(name: String): LiveData<UserEntity>
 }

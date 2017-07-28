@@ -3,6 +3,7 @@ package com.example.administrator.archdemo.api
 import android.arch.lifecycle.LiveData
 import com.example.administrator.archdemo.entity.UserEntity
 import com.example.administrator.archdemo.global.UrlObject
+import io.reactivex.Flowable
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -13,5 +14,5 @@ import retrofit2.http.GET
  */
 interface ArchService {
     @GET(UrlObject.USER)
-    fun getData(): Call<UserEntity>
+    fun doLogin(): Flowable<UserEntity>
 }

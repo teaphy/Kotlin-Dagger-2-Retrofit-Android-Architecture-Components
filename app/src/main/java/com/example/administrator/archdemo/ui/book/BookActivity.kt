@@ -9,7 +9,6 @@ import android.util.Log
 import android.widget.Toast
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.api.ArchService
-import com.example.administrator.archdemo.base.BaseActivity
 import com.example.administrator.archdemo.base.BaseToolbarActivity
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.db.AppDatabase.Companion.DATABASE_NAME
@@ -74,17 +73,7 @@ class BookActivity : BaseToolbarActivity() {
                     .addCallAdapterFactory(LiveDataCallAdapterFactory())
                     .build()
             val archService: ArchService = retrofit.create(ArchService::class.java)
-            archService.getData()
-                    .enqueue(object : Callback<UserEntity> {
-                        override fun onResponse(call: Call<UserEntity>?, response: Response<UserEntity>?) {
-                            Log.i("123", "body: ${response?.body()}")
-                        }
 
-                        override fun onFailure(call: Call<UserEntity>?, t: Throwable?) {
-                            Log.i("123", "onFailure: ${t?.message}")
-                        }
-
-                    })
         }
 
         btnInsert.setOnClickListener {

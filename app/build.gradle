@@ -27,6 +27,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug{
+
+        }
     }
 
     compileOptions {
@@ -43,6 +47,10 @@ allprojects {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -50,18 +58,23 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
     // anko
     compile "org.jetbrains.anko:anko-commons:$anko_version"
+
     // support
     implementation "com.android.support:design:$surpport_version"
     implementation "com.android.support:appcompat-v7:$surpport_version"
     implementation "com.android.support:recyclerview-v7:$surpport_version"
+
     // architecture
     compile "android.arch.lifecycle:runtime:$arch_version"
     compile "android.arch.lifecycle:extensions:$arch_version"
     kapt "android.arch.lifecycle:compiler:$arch_version"
+
     // room
     compile "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
@@ -70,16 +83,28 @@ dependencies {
     // retrofit
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // dagger
+    // dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version" // if you use the support libraries
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
     compile "com.google.dagger:dagger:$dagger_version"
     compile "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     // IconFont
-    compile "com.mikepenz:iconics-core:2.8.9@aar"
+    compile 'com.mikepenz:iconics-core:2.8.9@aar'
     compile 'com.mikepenz:google-material-typeface:3.0.1.1.original@aar'
 
-    // Timber
+    // timeber
     compile 'com.jakewharton.timber:timber:4.5.1'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }

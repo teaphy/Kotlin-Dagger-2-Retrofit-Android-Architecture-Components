@@ -16,6 +16,7 @@ class PersonActivity : LifecycleActivity(), LifecycleRegistryOwner {
     val personLiveData: PersonLiveData = PersonLiveData()
     lateinit var personMapLiveData: LiveData<String>
     lateinit var personSwitchMapLiveData: LiveData<String>
+    lateinit var mediaLiveData: MediatorLiveData<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,19 @@ class PersonActivity : LifecycleActivity(), LifecycleRegistryOwner {
 
         personSwitchMapLiveData.observe(this, Observer<String> {
             tvSwitchMap.text = it
+        })
+
+        mediaLiveData = MediatorLiveData()
+
+        mediaLiveData.addSource(personLiveData, {
+            newData ->
+            Log.d("tea", "addSource")
+            mediaLiveData.value = newData?.name
+        })
+
+        mediaLiveData.observe(this, Observer<String> {
+            Log.d("tea", "observer")
+            tvMedia.text = it
         })
 
         setListener()

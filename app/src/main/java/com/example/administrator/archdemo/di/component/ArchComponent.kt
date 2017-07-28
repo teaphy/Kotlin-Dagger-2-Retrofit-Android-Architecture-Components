@@ -1,19 +1,22 @@
 package com.example.administrator.archdemo.di.component
 
 import android.app.Application
-import com.example.administrator.archdemo.di.module.ActivityBuilderModule
+import com.example.administrator.archdemo.ArchApp
+import com.example.administrator.archdemo.bean.Dog
+import com.example.administrator.archdemo.di.module.AppModule
+import com.example.administrator.archdemo.di.module.LoginModule
+import com.example.administrator.archdemo.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
+import javax.inject.Provider
+import javax.inject.Singleton
 
-/**
- * @desc
- * @author Tiany
- * @date 2017/7/4 0004
- */
+@Singleton
 @Component(modules = arrayOf(
         AndroidInjectionModule::class,
-        ActivityBuilderModule::class))
+        AppModule::class,
+        LoginModule::class))
 interface ArchComponent {
 
     @Component.Builder
@@ -24,5 +27,5 @@ interface ArchComponent {
         fun build(): ArchComponent
     }
 
-    fun inject(application: Application)
+    fun inject(archApp: ArchApp)
 }

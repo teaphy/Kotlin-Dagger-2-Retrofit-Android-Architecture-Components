@@ -16,36 +16,45 @@
 
 package com.example.administrator.archdemo
 
-import com.example.administrator.archdemo.di.AppInjector
+import android.app.Activity
 import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
 import android.app.Application
+import com.example.administrator.archdemo.base.ActivityLifecycle
 import com.example.administrator.archdemo.base.AppManager
+import com.example.administrator.archdemo.di.component.DaggerArchComponent
+import com.example.administrator.archdemo.viewmodel.ArchViewModelFactory
 import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-class ArchApp : DaggerApplication() {
+class ArchApp : Application(), HasActivityInjector {
 
     @Inject
-    @JvmField
-    var dispatchingActivityInjector: DispatchingAndroidInjector<DaggerApplication>? = null
+    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
 
     @Inject
-    var mAppManager: AppManager? = null
+    lateinit var aLifecycle: ActivityLifecycle
 
-    var mApplication: Application? = null
+    @Inject
+    lateinit var mAppManager: AppManager
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
-        }
 
-        mApplication = this
+        initAppComponent()
 
-        AppInjector.init(this)
+        this.registerActivityLifecycleCallbacks(aLifecycle)
     }
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication>? {
+    fun initAppComponent() {
+        DaggerArchComponent.builder()
+                .application(this)
+                .build()
+                .inject(this)
+    }
+
+
+    override fun activityInjector(): AndroidInjector<Activity> {
         return dispatchingActivityInjector
     }
 
@@ -57,9 +66,6 @@ class ArchApp : DaggerApplication() {
 
         if (mAppManager != null) {//释放资源
             this.mAppManager?.release()
-            this.mAppManager = null
         }
-        if (mApplication != null)
-            this.mApplication = null
     }
 }

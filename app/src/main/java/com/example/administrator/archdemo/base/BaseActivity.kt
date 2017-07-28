@@ -18,11 +18,7 @@ import javax.inject.Inject
  * @author Teaphy
  * @date 2017/6/6
  */
-abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, HasSupportFragmentInjector {
-
-    @Inject
-	@JvmField
-    var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>? = null
+abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
 	lateinit var mRegistry: LifecycleRegistry
 
@@ -49,9 +45,5 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner, HasSu
 
     override fun getLifecycle(): LifecycleRegistry {
         return mRegistry
-    }
-
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment>? {
-        return dispatchingAndroidInjector
     }
 }

@@ -23,15 +23,16 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-
+@Singleton
 class ArchViewModelFactory @Inject
 constructor() : ViewModelProvider.Factory {
 
     @Inject
-    lateinit var creators: Map<Class<out ViewModel>, ViewModel>
+    lateinit var creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
+
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        var creator: ViewModel? = creators[modelClass]
+        var creator: Provider<out ViewModel>? = creators[modelClass]
         if (creator == null) {
             for ((key, value) in creators) {
                 if (modelClass.isAssignableFrom(key)) {
@@ -44,7 +45,7 @@ constructor() : ViewModelProvider.Factory {
             throw IllegalArgumentException("unknown model class " + modelClass)
         }
         try {
-            return creator as T
+            return creator.get() as T
         } catch (e: Exception) {
             throw RuntimeException(e)
         }

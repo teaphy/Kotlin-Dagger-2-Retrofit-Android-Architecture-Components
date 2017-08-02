@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center_horizontal"
-	android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
 	<include layout="@layout/layout_toolbar"/>
 
-	<android.support.v7.widget.AppCompatButton
-		android:id="@+id/acb_room"
-		android:layout_width="96dp"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:gravity="center"
-		android:textAllCaps="false"
-		android:text="Room"
-		android:textSize="16sp"/>
-	
-	<android.support.v7.widget.AppCompatButton
-		android:id="@+id/acb_book"
-		android:layout_width="96dp"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:gravity="center"
-		android:textAllCaps="false"
-		android:text="Book"
-		android:textSize="16sp"/>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="#000000"
+        app:tabIndicatorColor="#FF4081"
+        app:tabBackground="@android:color/holo_blue_bright">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

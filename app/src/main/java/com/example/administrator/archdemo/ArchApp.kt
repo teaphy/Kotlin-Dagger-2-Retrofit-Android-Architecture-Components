@@ -22,7 +22,6 @@ import android.app.Application
 import com.example.administrator.archdemo.base.ActivityLifecycle
 import com.example.administrator.archdemo.base.AppManager
 import com.example.administrator.archdemo.di.component.DaggerArchComponent
-import com.example.administrator.archdemo.viewmodel.ArchViewModelFactory
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

@@ -1,14 +1,10 @@
-package com.example.administrator.archdemo.ui.activity
+package com.example.administrator.archdemo.ui.book
 
 import android.annotation.SuppressLint
-import android.arch.persistence.room.InvalidationTracker
 import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.webkit.WebViewClient
 import com.example.administrator.archdemo.R
-import com.example.administrator.archdemo.base.BaseActivity
 import com.example.administrator.archdemo.base.BaseToolbarActivity
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.entity.UserEntity

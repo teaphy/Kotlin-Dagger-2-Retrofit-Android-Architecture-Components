@@ -5,7 +5,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context="com.example.administrator.archdemo.ui.activity.RoomActivity">
+	tools:context="com.example.administrator.archdemo.ui.book.RoomActivity">
 
 	<include layout="@layout/layout_toolbar" />
 

@@ -8,7 +8,6 @@ import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.global.DbObject
 import com.example.administrator.archdemo.global.UrlObject
-import com.example.administrator.archdemo.util.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

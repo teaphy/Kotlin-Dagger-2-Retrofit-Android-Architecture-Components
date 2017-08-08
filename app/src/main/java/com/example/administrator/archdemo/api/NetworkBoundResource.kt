@@ -44,22 +44,33 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
         if (shouldFetch()) {
             fetchFromNetwork()
         } else {
-            val dbSource = loadFromDb()
-            result.addSource(dbSource) { newData -> result.setValue(newData) }
+            AppExecutors().diskIO().execute {
+                val dbSource = loadFromDb()
+                result.addSource(dbSource) { newData -> result.setValue(newData) }
+            }
         }
     }
 
     private fun fetchFromNetwork() {
+
+        Log.i("123", "NetworkBoundResource - fetchFromNetwork")
+
         val requestFlowable: Flowable<RequestType> = createCall()
 
-        requestFlowable.subscribeOn(Schedulers.io())
+        requestFlowable
+                .subscribeOn(Schedulers.io())
                 .flatMap { it ->
-                    val rt: ResultType = processResponse(it)
-                    // 将数据保存到数据库
-                    if (shouldSave()) {
-                        saveCallResult(rt)
+                    val rt: ResultType? = processResponse(it)
+                    if (null == rt) {
+                        Flowable.empty<ResultType>()
+                    } else {
+                        // 将数据保存到数据库
+                        if (shouldSave()) {
+                            saveCallResult(rt)
+                        }
+                        Flowable.just(rt)
                     }
-                    Flowable.just(rt)
+
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSubscriber<ResultType>() {
@@ -67,7 +78,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                         onFinally()
                     }
 
-                    override fun onNext(res:  ResultType?) {
+                    override fun onNext(res: ResultType?) {
                         result.value = res
                     }
 
@@ -119,12 +130,12 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
      * 将RequestType转换为ResultType
      */
     @WorkerThread
-    protected abstract fun processResponse(response: RequestType): ResultType
+    protected abstract fun processResponse(response: RequestType): ResultType?
 
     /**
      * 从数据库加载数据
      */
-    @MainThread
+    @WorkerThread
     protected abstract fun loadFromDb(): LiveData<ResultType>
 
     /**

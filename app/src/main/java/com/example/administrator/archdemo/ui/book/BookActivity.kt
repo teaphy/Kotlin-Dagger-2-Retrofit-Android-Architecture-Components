@@ -15,12 +15,12 @@ import com.example.administrator.archdemo.db.AppDatabase.Companion.DATABASE_NAME
 import com.example.administrator.archdemo.entity.BookEntity
 import com.example.administrator.archdemo.entity.UserEntity
 import com.example.administrator.archdemo.global.UrlObject
-import com.example.administrator.archdemo.util.LiveDataCallAdapterFactory
 import kotlinx.android.synthetic.main.activity_book.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class BookActivity : BaseToolbarActivity() {
@@ -70,7 +70,7 @@ class BookActivity : BaseToolbarActivity() {
             val retrofit : Retrofit = Retrofit.Builder()
                     .baseUrl(UrlObject.URL_BASE)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(LiveDataCallAdapterFactory())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
             val archService: ArchService = retrofit.create(ArchService::class.java)
 

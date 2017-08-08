@@ -1,10 +1,14 @@
 package com.example.administrator.archdemo.di.module
 
 
+import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.example.administrator.archdemo.di.animotion.ViewModelKey
+import com.example.administrator.archdemo.ui.fragment.fetchNews.FetchNewsVModel
 import com.example.administrator.archdemo.viewmodel.ArchViewModelFactory
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
 /**
  * @desc
@@ -13,6 +17,11 @@ import dagger.Module
  */
 @Module
 abstract class ViewModelModule {
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FetchNewsVModel::class)
+    internal abstract fun bindFetechNewsVModell(fetchNewsVModel: FetchNewsVModel): ViewModel
 
 
     @Binds

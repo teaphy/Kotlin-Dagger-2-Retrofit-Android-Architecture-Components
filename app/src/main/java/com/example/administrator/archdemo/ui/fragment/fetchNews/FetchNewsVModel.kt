@@ -21,16 +21,18 @@ import javax.inject.Inject
 class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepository) : ViewModel() {
     val newsLiveData: MutableLiveData<String> = MutableLiveData<String>()
 
-    fun fetchNews(channel: String) : LiveData<List<NewsEntity>> {
-        return fetchNewsRepository.fetchNews(configParas(channel))
+    fun fetchNews(channel: String, pageSize: Int) : LiveData<List<NewsEntity>> {
+        return fetchNewsRepository.fetchNews(configParas(channel, pageSize))
     }
 
-    fun configParas(channel: String): Map<String, String> {
+    fun configParas(channel: String, pageSize: Int): Map<String, String> {
+        val start = CommonObject.PAGE_SIZE * (pageSize - 1)
+
         var params: Map<String, String> =
                 mapOf("appkey" to CommonObject.KEY_APP_JDWX,
                         "channel" to channel,
                         "num" to CommonObject.PAGE_SIZE.toString(),
-                        "start" to "0")
+                        "start" to start.toString())
         return params
     }
 

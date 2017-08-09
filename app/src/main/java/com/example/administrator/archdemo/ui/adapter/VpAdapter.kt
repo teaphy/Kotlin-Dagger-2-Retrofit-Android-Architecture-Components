@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 
 /**
- * @desc
+ * @desc ViewPager Fragment Adpater
  * @author Tiany
  * @date 2017/8/2 0002
  */

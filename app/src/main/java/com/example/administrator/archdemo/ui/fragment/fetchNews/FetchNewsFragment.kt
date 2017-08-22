@@ -16,7 +16,6 @@ import com.example.administrator.archdemo.base.BaseFragment
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.global.KeyObject
 import com.example.administrator.archdemo.ui.adapter.NewsAdapter
-import kotlinx.android.synthetic.main.activity_room.*
 import kotlinx.android.synthetic.main.fragment_fetch_news.*
 import javax.inject.Inject
 

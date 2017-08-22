@@ -2,7 +2,6 @@ package com.example.administrator.archdemo.api
 
 import android.arch.lifecycle.LiveData
 import android.support.annotation.MainThread
-import io.reactivex.Flowable
 
 /**
  * @desc

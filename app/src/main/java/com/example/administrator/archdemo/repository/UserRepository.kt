@@ -1,9 +1,6 @@
 package com.example.administrator.archdemo.repository
 
 import android.arch.lifecycle.LiveData
-import android.widget.Toast
-import com.example.administrator.archdemo.AppExecutors
-import com.example.administrator.archdemo.ArchApp
 import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.api.NetworkBoundResource
 import com.example.administrator.archdemo.db.AppDatabase

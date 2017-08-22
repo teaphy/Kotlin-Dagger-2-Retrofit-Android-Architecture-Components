@@ -3,12 +3,6 @@ package com.example.administrator.archdemo.base
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
-import com.example.administrator.archdemo.di.Injectable
-import dagger.android.AndroidInjection
-import dagger.android.support.AndroidSupportInjection
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,7 +16,6 @@ class ActivityLifecycle @Inject
 constructor(private val mAppManager: AppManager) : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        handleActivity(activity)
         mAppManager.addActivity(activity)
     }
 
@@ -50,20 +43,5 @@ constructor(private val mAppManager: AppManager) : Application.ActivityLifecycle
 
     override fun onActivityDestroyed(activity: Activity) {
         mAppManager.removeActivity(activity)
-    }
-
-    private fun handleActivity(activity: Activity) {
-
-        AndroidInjection.inject(activity)
-
-        (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
-                object : FragmentManager.FragmentLifecycleCallbacks() {
-                    override fun onFragmentCreated(fm: FragmentManager?, f: Fragment?,
-                                                   savedInstanceState: Bundle?) {
-                        if (null != f && f is Injectable) {
-                            AndroidSupportInjection.inject(f)
-                        }
-                    }
-                }, true)
     }
 }

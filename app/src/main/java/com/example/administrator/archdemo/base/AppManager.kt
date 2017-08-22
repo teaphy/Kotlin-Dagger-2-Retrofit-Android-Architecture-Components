@@ -9,8 +9,7 @@ import android.content.Intent
 import android.os.Message
 import android.support.design.widget.Snackbar
 import android.view.View
-import java.util.LinkedList
-
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 

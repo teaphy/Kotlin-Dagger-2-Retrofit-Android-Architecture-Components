@@ -1,9 +1,7 @@
 package com.example.administrator.archdemo.di.module
 
 import android.app.Application
-import android.arch.lifecycle.ViewModel
 import android.arch.persistence.room.Room
-import android.content.Context
 import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.global.DbObject
@@ -13,15 +11,15 @@ import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Provider
 import javax.inject.Singleton
+
 
 /**
  * @desc
  * @author Tiany
  * @date 2017/7/4 0004
  */
-@Module(includes = arrayOf(ViewModelModule::class))
+@Module(includes = arrayOf(ActivityBuilderModule::class))
 class AppModule {
 
     @Singleton

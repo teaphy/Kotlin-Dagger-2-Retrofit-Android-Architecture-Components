@@ -10,7 +10,9 @@ import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.entity.UserEntity
 import com.example.administrator.archdemo.ui.adapter.UserAdapter
 import kotlinx.android.synthetic.main.activity_room.*
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
 
 /**
  * @desc  Room

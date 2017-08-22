@@ -21,7 +21,7 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(FetchNewsVModel::class)
-    internal abstract fun bindFetechNewsVModell(fetchNewsVModel: FetchNewsVModel): ViewModel
+    abstract fun bindFetechNewsVModell(fetchNewsVModel: FetchNewsVModel): ViewModel
 
 
     @Binds

@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.arch.persistence.room.Room
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Toast
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.api.ArchService
@@ -13,12 +12,8 @@ import com.example.administrator.archdemo.base.BaseToolbarActivity
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.db.AppDatabase.Companion.DATABASE_NAME
 import com.example.administrator.archdemo.entity.BookEntity
-import com.example.administrator.archdemo.entity.UserEntity
 import com.example.administrator.archdemo.global.UrlObject
 import kotlinx.android.synthetic.main.activity_book.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

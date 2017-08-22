@@ -13,14 +13,18 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.entity.NewsEntity
 
-import kotlinx.android.synthetic.main.item_news.view.*
-
 /**
  * @desc This is for display the news
  * @author Tiany
  * @date 2017/8/9 0009
  */
-class NewsAdapter(val list: List<NewsEntity>, val context: Context) : RecyclerView.Adapter<NewsAdapter.MyHolder>(){
+class NewsAdapter(var list: MutableList<NewsEntity>, val context: Context) : RecyclerView.Adapter<NewsAdapter.MyHolder>() {
+
+    init {
+        if (null == list) {
+            list = mutableListOf()
+        }
+    }
 
     override fun onBindViewHolder(holder: MyHolder?, position: Int) {
         val news = list[position]
@@ -46,17 +50,14 @@ class NewsAdapter(val list: List<NewsEntity>, val context: Context) : RecyclerVi
         return list.size
     }
 
+    fun getItem(position: Int): NewsEntity {
+        return list[position]
+    }
 
     class MyHolder(item: View) : RecyclerView.ViewHolder(item) {
-        val ivNews: ImageView
-        val tvTitle: TextView
-        val tvTime: TextView
-
-        init {
-            ivNews = item.findViewById(R.id.ivNews)
-            tvTitle = item.findViewById(R.id.tvTitle)
-            tvTime = item.findViewById(R.id.tvTime)
-        }
+        val ivNews: ImageView = item.findViewById(R.id.ivNews)
+        val tvTitle: TextView = item.findViewById(R.id.tvTitle)
+        val tvTime: TextView = item.findViewById(R.id.tvTime)
 
     }
 }

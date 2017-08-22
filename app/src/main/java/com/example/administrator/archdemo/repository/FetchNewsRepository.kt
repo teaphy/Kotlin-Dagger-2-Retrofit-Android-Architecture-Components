@@ -6,8 +6,8 @@ import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.api.NetworkBoundResource
 import com.example.administrator.archdemo.base.CommonResult
 import com.example.administrator.archdemo.entity.NewsEntity
+import com.example.administrator.archdemo.listener.NetworkListener
 import io.reactivex.Flowable
-import org.w3c.dom.Entity
 import javax.inject.Inject
 
 /**
@@ -17,7 +17,7 @@ import javax.inject.Inject
  */
 class FetchNewsRepository @Inject constructor(val archService: ArchService) {
 
-    fun fetchNews(params: Map<String, String>): LiveData<List<NewsEntity>> {
+    fun fetchNews(params: Map<String, String>, netwrokListener: NetworkListener): LiveData<List<NewsEntity>> {
 
         Log.i("123", "FetchNewsRepository - fetchNews")
 
@@ -43,7 +43,7 @@ class FetchNewsRepository @Inject constructor(val archService: ArchService) {
             }
 
             override fun onFetchFailed() {
-
+                netwrokListener.fetchFailed()
             }
 
         }.asLiveData()

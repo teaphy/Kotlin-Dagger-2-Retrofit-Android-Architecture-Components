@@ -1,12 +1,10 @@
 package com.example.administrator.archdemo.ui.book
 
 import android.app.Application
-import android.arch.core.util.Function
-import android.arch.lifecycle.*
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.OnConflictStrategy
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
 import android.util.Log
 import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.entity.BookEntity

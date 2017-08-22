@@ -2,15 +2,12 @@ package com.example.administrator.archdemo.ui.fragment.fetchNews
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
-import android.util.Log
-import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.global.CommonObject
+import com.example.administrator.archdemo.listener.impl.SimpleNetworkListener
 import com.example.administrator.archdemo.repository.FetchNewsRepository
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subscribers.DisposableSubscriber
 import javax.inject.Inject
 
 /**
@@ -19,13 +16,32 @@ import javax.inject.Inject
  * @date 2017/8/7 0007
  */
 class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepository) : ViewModel() {
-    val newsLiveData: MutableLiveData<String> = MutableLiveData<String>()
+    var newsLiveData: LiveData<List<NewsEntity>>
+    private val pageLiveData: MutableLiveData<Int> = MutableLiveData()
 
-    fun fetchNews(channel: String, pageSize: Int) : LiveData<List<NewsEntity>> {
-        return fetchNewsRepository.fetchNews(configParas(channel, pageSize))
+    private lateinit var newsView: FetchNewsView
+
+    init {
+        newsLiveData = Transformations.switchMap(pageLiveData){
+            page ->
+            fetchNewsRepository!!.fetchNews(configParas(newsView!!.provideChannel(), page), object : SimpleNetworkListener(){
+                override fun fetchFailed() {
+                    super.fetchFailed()
+                    newsView.fetchNewsFailure()
+                }
+            })
+        }
     }
 
-    fun configParas(channel: String, pageSize: Int): Map<String, String> {
+    fun fetchNews(): LiveData<List<NewsEntity>> {
+        return newsLiveData
+    }
+
+    fun updatePage(pageSize: Int) {
+        pageLiveData.value = pageSize
+    }
+
+    private fun configParas(channel: String, pageSize: Int): Map<String, String> {
         val start = CommonObject.PAGE_SIZE * (pageSize - 1)
 
         var params: Map<String, String> =
@@ -36,4 +52,7 @@ class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepo
         return params
     }
 
+    fun attechView(view: FetchNewsView) {
+        this.newsView = view
+    }
 }

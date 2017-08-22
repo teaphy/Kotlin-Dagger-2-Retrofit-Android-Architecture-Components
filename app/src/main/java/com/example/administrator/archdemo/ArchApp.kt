@@ -17,11 +17,11 @@
 package com.example.administrator.archdemo
 
 import android.app.Activity
-import dagger.android.AndroidInjector
 import android.app.Application
 import com.example.administrator.archdemo.base.ActivityLifecycle
 import com.example.administrator.archdemo.base.AppManager
 import com.example.administrator.archdemo.di.component.DaggerArchComponent
+import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
@@ -45,10 +45,9 @@ class ArchApp : Application(), HasActivityInjector {
         this.registerActivityLifecycleCallbacks(aLifecycle)
     }
 
-    fun initAppComponent() {
+    private fun initAppComponent() {
         DaggerArchComponent.builder()
-                .application(this)
-                .build()
+                .create(this)
                 .inject(this)
     }
 

@@ -4,16 +4,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseHasFragmentActivity
-import com.example.administrator.archdemo.base.BaseToolbarActivity
 import com.example.administrator.archdemo.ui.adapter.VpAdapter
-import com.example.administrator.archdemo.ui.book.BookActivity
-import com.example.administrator.archdemo.ui.book.RoomActivity
 import com.example.administrator.archdemo.ui.fragment.collectionNews.CollectionNewsFragment
 import com.example.administrator.archdemo.ui.fragment.fetchNews.FetchNewsFragment
-
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.collections.forEachReversedWithIndex
-import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseHasFragmentActivity() {
 

@@ -4,6 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
+import android.util.Log
+import com.example.administrator.archdemo.AppExecutors
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.global.CommonObject
 import com.example.administrator.archdemo.listener.impl.SimpleNetworkListener
@@ -16,7 +18,7 @@ import javax.inject.Inject
  * @date 2017/8/7 0007
  */
 class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepository) : ViewModel() {
-    var newsLiveData: LiveData<List<NewsEntity>>
+    private var newsLiveData: LiveData<List<NewsEntity>>
     private val pageLiveData: MutableLiveData<Int> = MutableLiveData()
 
     private lateinit var newsView: FetchNewsView

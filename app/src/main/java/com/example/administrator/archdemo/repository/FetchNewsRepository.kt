@@ -2,9 +2,11 @@ package com.example.administrator.archdemo.repository
 
 import android.arch.lifecycle.LiveData
 import android.util.Log
+import com.example.administrator.archdemo.AppExecutors
 import com.example.administrator.archdemo.api.ArchService
 import com.example.administrator.archdemo.api.NetworkBoundResource
 import com.example.administrator.archdemo.base.CommonResult
+import com.example.administrator.archdemo.db.AppDatabase
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.listener.NetworkListener
 import io.reactivex.Flowable
@@ -15,7 +17,7 @@ import javax.inject.Inject
  * @author Tiany
  * @date 2017/8/7 0007
  */
-class FetchNewsRepository @Inject constructor(val archService: ArchService) {
+class FetchNewsRepository @Inject constructor(val archService: ArchService, val appDatabase: AppDatabase, val appExecutors: AppExecutors) {
 
     fun fetchNews(params: Map<String, String>, netwrokListener: NetworkListener): LiveData<List<NewsEntity>> {
 
@@ -26,20 +28,19 @@ class FetchNewsRepository @Inject constructor(val archService: ArchService) {
                 return archService.queryNews(params)
             }
 
-            override fun shouldFetch(): Boolean {
-                return true
-            }
-
             override fun processResponse(response: CommonResult<NewsEntity>): List<NewsEntity>? {
                 return response.result.result.list
             }
 
-            override fun loadFromDb(): LiveData<List<NewsEntity>> {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
+            /**
+             *  将新闻信息保存到数据库
+             */
             override fun saveCallResult(item: List<NewsEntity>) {
-
+                appExecutors.diskIO().execute{
+                    val news = appDatabase.newsDao().queryAllNewsForList()
+                    appDatabase.newsDao().deleteAll(news = news)
+                    appDatabase.newsDao().insertNews(item)
+                }
             }
 
             override fun onFetchFailed() {
@@ -47,5 +48,9 @@ class FetchNewsRepository @Inject constructor(val archService: ArchService) {
             }
 
         }.asLiveData()
+    }
+
+    fun loadNewsFromDb(): LiveData<List<NewsEntity>> {
+        return appDatabase.newsDao().queryAllNews()
     }
 }

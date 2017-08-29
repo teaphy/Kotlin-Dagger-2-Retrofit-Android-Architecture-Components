@@ -41,14 +41,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     private val result = MediatorLiveData<ResultType>()
 
     init {
-        if (shouldFetch()) {
-            fetchFromNetwork()
-        } else {
-            AppExecutors().diskIO().execute {
-                val dbSource = loadFromDb()
-                result.addSource(dbSource) { newData -> result.setValue(newData) }
-            }
-        }
+        fetchFromNetwork()
     }
 
     private fun fetchFromNetwork() {
@@ -121,22 +114,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     protected abstract fun createCall(): Flowable<RequestType>
 
     /**
-     * 是否请求网络
-     */
-    @MainThread
-    protected abstract fun shouldFetch(): Boolean
-
-    /**
      * 将RequestType转换为ResultType
      */
     @WorkerThread
     protected abstract fun processResponse(response: RequestType): ResultType?
 
-    /**
-     * 从数据库加载数据
-     */
-    @WorkerThread
-    protected abstract fun loadFromDb(): LiveData<ResultType>
 
     /**
      * 将数据保存到数据库

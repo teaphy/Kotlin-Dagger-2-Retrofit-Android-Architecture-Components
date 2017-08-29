@@ -5,11 +5,6 @@
         <item>头条</item>
         <item>新闻</item>
         <item>财经</item>
-        <item>体育</item>
-        <item>娱乐</item>
-        <item>军事</item>
-        <item>教育</item>
-        <item>科技</item>
-        <item>搜藏</item>
+        <item>收藏</item>
     </string-array>
 </resources>

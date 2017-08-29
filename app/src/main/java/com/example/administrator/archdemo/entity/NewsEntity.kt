@@ -1,6 +1,7 @@
 package com.example.administrator.archdemo.entity
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 
@@ -19,6 +20,9 @@ data class NewsEntity(
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
+
+    @Ignore
+    var isCollected: Boolean = false// 是否收藏
 
     // 新闻类型
     var newsType: Int = 1

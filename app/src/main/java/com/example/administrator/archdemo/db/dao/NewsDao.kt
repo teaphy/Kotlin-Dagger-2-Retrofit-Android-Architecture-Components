@@ -1,6 +1,8 @@
 package com.example.administrator.archdemo.db.dao
 
-import android.arch.persistence.room.Dao
+import android.arch.lifecycle.LiveData
+import android.arch.persistence.room.*
+import com.example.administrator.archdemo.entity.NewsEntity
 
 /**
  * @desc
@@ -9,4 +11,18 @@ import android.arch.persistence.room.Dao
  */
 @Dao
 interface NewsDao {
+
+    // 向表中插入一系列
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertNews(news: List<NewsEntity>)
+
+    @Query("SELECT * FROM news")
+    fun queryAllNews(): LiveData<List<NewsEntity>>
+
+    @Query("SELECT * FROM news")
+    fun queryAllNewsForList(): List<NewsEntity>
+
+    @Delete
+    fun deleteAll(news: List<NewsEntity>)
+
 }

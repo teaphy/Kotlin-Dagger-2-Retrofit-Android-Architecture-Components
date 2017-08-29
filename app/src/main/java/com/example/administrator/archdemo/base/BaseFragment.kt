@@ -14,9 +14,7 @@ import dagger.android.support.AndroidSupportInjection
  * @author Tiany
  * @date 2017/8/7 0007
  */
-open class BaseFragment :  Fragment(), LifecycleRegistryOwner {
-
-    val mRegistry: LifecycleRegistry = LifecycleRegistry(this)
+open class BaseFragment : BaseLifecycleFragment(), LifecycleRegistryOwner {
 
     @SuppressWarnings("deprecation")
     override fun onAttach(activity: Activity) {
@@ -34,9 +32,5 @@ open class BaseFragment :  Fragment(), LifecycleRegistryOwner {
             AndroidSupportInjection.inject(this)
         }
         super.onAttach(context)
-    }
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return mRegistry
     }
 }

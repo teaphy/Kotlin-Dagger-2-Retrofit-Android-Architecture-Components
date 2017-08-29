@@ -1,6 +1,7 @@
 package com.example.administrator.archdemo.ui.main
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseHasFragmentActivity
@@ -34,7 +35,7 @@ class MainActivity : BaseHasFragmentActivity() {
             if (pos < mListTitle.size - 1) {
                 mListFragment.add(FetchNewsFragment.newInstance(title))
             } else {
-                mListFragment.add(CollectionNewsFragment())
+                mListFragment.add(CollectionNewsFragment.newInstance(title))
             }
         }
     }
@@ -42,7 +43,10 @@ class MainActivity : BaseHasFragmentActivity() {
     override fun initView() {
         vpAdapter = VpAdapter(supportFragmentManager, mListTitle, mListFragment)
         vpNews.adapter = vpAdapter
+        tabNews.tabMode = TabLayout.MODE_FIXED
         tabNews.setupWithViewPager(vpNews)
+
+        vpNews.offscreenPageLimit = mListTitle.size
     }
     
     override fun setListener() {

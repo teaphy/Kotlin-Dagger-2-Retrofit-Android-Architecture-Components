@@ -15,7 +15,9 @@ import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseFragment
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.global.KeyObject
+import com.example.administrator.archdemo.listener.IApplyListener
 import com.example.administrator.archdemo.ui.adapter.NewsAdapter
+import com.example.administrator.archdemo.ui.fragment.CollectNewsVModel
 import kotlinx.android.synthetic.main.fragment_fetch_news.*
 import javax.inject.Inject
 
@@ -24,12 +26,13 @@ import javax.inject.Inject
  */
 class FetchNewsFragment : BaseFragment(), FetchNewsView {
 
-    private lateinit var mNewsColumn: String
+    private lateinit var mNewsType: String
 
     @Inject
     lateinit var mArchVModelFactory: ViewModelProvider.Factory
 
     private lateinit var mFetchNewsVModel: FetchNewsVModel
+    private lateinit var mCollectNewsVModel: CollectNewsVModel
 
     private var mListNews: MutableList<NewsEntity> = mutableListOf()
 
@@ -42,10 +45,10 @@ class FetchNewsFragment : BaseFragment(), FetchNewsView {
     private lateinit var mNewsAdapter: NewsAdapter
 
     companion object {
-        fun newInstance(keyword: String): FetchNewsFragment {
+        fun newInstance(newsType: String): FetchNewsFragment {
             var frm = FetchNewsFragment()
             val args = Bundle()
-            args.putString(KeyObject.KEY_NEWS_COLUMN, keyword)
+            args.putString(KeyObject.KEY_NEWS_COLUMN, newsType)
             frm.arguments = args
             return frm
         }
@@ -75,22 +78,32 @@ class FetchNewsFragment : BaseFragment(), FetchNewsView {
     }
 
     private fun initData() {
-        mNewsColumn = arguments.getString(KeyObject.KEY_NEWS_COLUMN)
+        mNewsType = arguments.getString(KeyObject.KEY_NEWS_COLUMN)
 
-        mNewsAdapter = NewsAdapter(mListNews, context)
+        mNewsAdapter = NewsAdapter(mListNews, context, mNewsType)
 
-        // 获取相关的ViewModel实例
+
+        // 获取相关的ViewModel实例 - 处理新闻相关的Model
         mFetchNewsVModel = ViewModelProviders.of(this, mArchVModelFactory).get(FetchNewsVModel::class.java)
+        // 获取处理收藏新闻相关的
+        // 这里使用Activity作为参数，是为了当前Activity中的Fragment之间的通信
+        /**
+         * 注意 LifecycleRegistryOwner在onResume时，才处理数据
+         */
+        mCollectNewsVModel = ViewModelProviders.of(activity).get(CollectNewsVModel::class.java)
+
 
         mFetchNewsVModel.attechView(this)
 
-        // 获取相关的LiveData实例并监测
+        // 获取相关的LiveData实例并监测Mode
         mFetchNewsVModel.fetchNews().observe(this, Observer {
             if (mPageSize == 1) {
                 if (null != it) {
                     mListNews.clear()
-                    mListNews.addAll(it)
-                    mNewsAdapter.notifyDataSetChanged()
+                    val addAll = mListNews.addAll(elements = it)
+                    if (addAll) {
+                        mNewsAdapter.notifyDataSetChanged()
+                    }
                 }
 
             } else {
@@ -144,10 +157,17 @@ class FetchNewsFragment : BaseFragment(), FetchNewsView {
                 }
             }
         })
+
+        mNewsAdapter.applyListener = object : IApplyListener<NewsEntity>{
+            // 将新闻保存到收藏
+            override fun apply(newsEntity: NewsEntity) {
+                mCollectNewsVModel.collectNews(newsEntity)
+            }
+        }
     }
 
     override fun provideChannel(): String {
-        return mNewsColumn
+        return mNewsType
     }
 
     override fun fetchNewsFailure() {

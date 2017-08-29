@@ -1,11 +1,9 @@
 package com.example.administrator.archdemo.base
 
 import android.app.Activity
-import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.LifecycleRegistryOwner
 import android.content.Context
 import android.os.Build
-import android.support.v4.app.Fragment
 import dagger.android.support.AndroidSupportInjection
 
 

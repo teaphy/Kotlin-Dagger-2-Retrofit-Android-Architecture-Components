@@ -22,8 +22,6 @@ import android.support.annotation.MainThread
 import android.support.annotation.WorkerThread
 import android.text.TextUtils
 import android.util.Log
-
-import com.example.administrator.archdemo.AppExecutors
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -4,8 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
-import android.util.Log
-import com.example.administrator.archdemo.AppExecutors
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.global.CommonObject
 import com.example.administrator.archdemo.listener.impl.SimpleNetworkListener

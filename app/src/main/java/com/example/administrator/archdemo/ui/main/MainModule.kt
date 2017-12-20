@@ -16,7 +16,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainModule {
 
 
-    @ContributesAndroidInjector(modules = arrayOf(FetchNewsModule::class))
+    @ContributesAndroidInjector(modules = [FetchNewsModule::class])
     abstract fun bindFetchNewsFragment(): FetchNewsFragment
 
     @Binds

@@ -11,16 +11,16 @@ import dagger.android.AndroidInjection
  * @author Teaphy
  * @date 2017/6/6
  */
-abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
+abstract class BaseActivity : AppCompatActivity() {
 
-	lateinit var mRegistry: LifecycleRegistry
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
 		super.onCreate(savedInstanceState)
 		setContentView(getLayoutId())
 
-        mRegistry = LifecycleRegistry(this)
+
 
 		initData()
 
@@ -37,7 +37,4 @@ abstract class BaseActivity : AppCompatActivity(), LifecycleRegistryOwner {
 
 	abstract fun setListener()
 
-    override fun getLifecycle(): LifecycleRegistry {
-        return mRegistry
-    }
 }

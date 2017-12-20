@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.administrator.archdemo"
         minSdkVersion 15
@@ -53,7 +53,7 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:support-v4:26.0.0'
+
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -70,20 +70,26 @@ dependencies {
     implementation "com.android.support:design:$surpport_version"
     implementation "com.android.support:appcompat-v7:$surpport_version"
     implementation "com.android.support:recyclerview-v7:$surpport_version"
+    implementation "com.android.support:support-v4:$surpport_version"
 
     // architecture
-    compile "android.arch.lifecycle:runtime:$arch_version"
-    compile "android.arch.lifecycle:extensions:$arch_version"
+    // lifecycles
+    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
+    implementation "android.arch.lifecycle:common-java8:$arch_version"
     kapt "android.arch.lifecycle:compiler:$arch_version"
+    //  LiveData & ViewModel
+    implementation "android.arch.lifecycle:extensions:$arch_version"
+    //  LiveData with ReactiveStreams API
+    implementation "android.arch.lifecycle:reactivestreams:$arch_version"
 
     // room
-    compile "android.arch.persistence.room:runtime:$room_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"
-    compile "android.arch.persistence.room:rxjava2:$room_version"
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
 
     // retrofit
-    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
-    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // dagger

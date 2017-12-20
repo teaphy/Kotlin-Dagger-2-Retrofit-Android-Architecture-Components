@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a6f8f2ebcde5bd1a0e2f4b84afb4658c",
+    "identityHash": "c1f0acd315f3a76ca1a7e0f6b979cab0",
     "entities": [
       {
         "tableName": "news",
@@ -82,7 +82,7 @@
             "columnNames": [
               "url"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_news_url`\nON `${TABLE_NAME}` (`url`)"
+            "createSql": "CREATE UNIQUE INDEX `index_news_url` ON `${TABLE_NAME}` (`url`)"
           }
         ],
         "foreignKeys": []
@@ -90,7 +90,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a6f8f2ebcde5bd1a0e2f4b84afb4658c\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c1f0acd315f3a76ca1a7e0f6b979cab0\")"
     ]
   }
 }

@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 class FetchNewsRepository @Inject constructor(val archService: ArchService, val appDatabase: AppDatabase, val appExecutors: AppExecutors) {
 
-    fun fetchNews(params: Map<String, String>, netwrokListener: NetworkListener): LiveData<List<NewsEntity>> {
+    fun fetchNews(params: Map<String, String>, networkListener: NetworkListener): LiveData<List<NewsEntity>> {
 
         Log.i("123", "FetchNewsRepository - fetchNews")
 
@@ -44,7 +44,7 @@ class FetchNewsRepository @Inject constructor(val archService: ArchService, val 
             }
 
             override fun onFetchFailed() {
-                netwrokListener.fetchFailed()
+                networkListener.fetchFailed()
             }
 
         }.asLiveData()

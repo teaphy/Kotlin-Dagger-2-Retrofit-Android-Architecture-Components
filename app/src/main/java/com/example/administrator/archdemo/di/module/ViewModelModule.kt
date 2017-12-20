@@ -18,6 +18,7 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class ViewModelModule {
 
+    // 将View添加到Map
     @Binds
     @IntoMap
     @ViewModelKey(FetchNewsVModel::class)

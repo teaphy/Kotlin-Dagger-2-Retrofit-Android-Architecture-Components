@@ -24,7 +24,7 @@ class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepo
     init {
         newsLiveData = Transformations.switchMap(pageLiveData){
             page ->
-            fetchNewsRepository!!.fetchNews(configParas(newsView!!.provideChannel(), page), object : SimpleNetworkListener(){
+            fetchNewsRepository.fetchNews(configParas(newsView.provideChannel(), page), object : SimpleNetworkListener(){
                 override fun fetchFailed() {
                     super.fetchFailed()
                     newsView.fetchNewsFailure()
@@ -44,12 +44,10 @@ class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepo
     private fun configParas(channel: String, pageSize: Int): Map<String, String> {
         val start = CommonObject.PAGE_SIZE * (pageSize - 1)
 
-        var params: Map<String, String> =
-                mapOf("appkey" to CommonObject.KEY_APP_JDWX,
-                        "channel" to channel,
-                        "num" to CommonObject.PAGE_SIZE.toString(),
-                        "start" to start.toString())
-        return params
+        return mapOf("appkey" to CommonObject.KEY_APP_JDWX,
+                "channel" to channel,
+                "num" to CommonObject.PAGE_SIZE.toString(),
+                "start" to start.toString())
     }
 
     fun attechView(view: FetchNewsView) {

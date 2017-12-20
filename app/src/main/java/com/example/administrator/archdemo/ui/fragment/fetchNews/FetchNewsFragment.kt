@@ -46,7 +46,7 @@ class FetchNewsFragment : BaseFragment(), FetchNewsView {
 
     companion object {
         fun newInstance(newsType: String): FetchNewsFragment {
-            var frm = FetchNewsFragment()
+            val frm = FetchNewsFragment()
             val args = Bundle()
             args.putString(KeyObject.KEY_NEWS_COLUMN, newsType)
             frm.arguments = args
@@ -63,7 +63,6 @@ class FetchNewsFragment : BaseFragment(), FetchNewsView {
         initView()
 
         setListener()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

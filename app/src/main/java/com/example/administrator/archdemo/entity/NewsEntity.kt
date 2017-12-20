@@ -6,7 +6,7 @@ import android.arch.persistence.room.Index
 import android.arch.persistence.room.PrimaryKey
 
 @Entity(tableName = "news",
-        indices = arrayOf(Index(*arrayOf("url"), unique = true)))
+        indices = [(Index("url", unique = true))])
 data class NewsEntity(
         var src: String, // 新闻来源
         var weburl: String, // 新闻Url

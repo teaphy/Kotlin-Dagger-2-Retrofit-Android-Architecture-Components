@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * @author Tiany
  * @date 2017/8/2 0002
  */
-@Module(includes = arrayOf(AndroidInjectionModule::class))
+@Module(includes = [(AndroidInjectionModule::class)])
 abstract class ActivityBuilderModule {
 
     @Binds

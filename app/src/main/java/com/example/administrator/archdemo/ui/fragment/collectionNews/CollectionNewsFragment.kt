@@ -4,13 +4,13 @@ package com.example.administrator.archdemo.ui.fragment.collectionNews
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.administrator.archdemo.R
-import com.example.administrator.archdemo.base.BaseLifecycleFragment
 import com.example.administrator.archdemo.entity.NewsEntity
 import com.example.administrator.archdemo.global.KeyObject
 import com.example.administrator.archdemo.ui.adapter.NewsAdapter
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_collection_news.*
 /**
  * 收藏新闻列表
  */
-class CollectionNewsFragment : BaseLifecycleFragment() {
+class CollectionNewsFragment : Fragment() {
 
     private lateinit var mCollectNewsVModel: CollectNewsVModel
 

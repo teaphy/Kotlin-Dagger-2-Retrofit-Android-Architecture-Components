@@ -19,7 +19,7 @@ import javax.inject.Singleton
  * @author Tiany
  * @date 2017/7/4 0004
  */
-@Module(includes = arrayOf(ActivityBuilderModule::class))
+@Module(includes = [(ActivityBuilderModule::class)])
 class AppModule {
 
     @Singleton

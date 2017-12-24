@@ -8,7 +8,7 @@ buildscript {
     ext.lifecycle_version = "1.0.3"
     ext.arch_version = "1.0.0"
     ext.retrofit_version = "2.3.0"
-    ext.dagger_version = "2.13"
+    ext.dagger_version = "2.14.1"
     ext.rxjava_version = "2.1.2"
 
     repositories {

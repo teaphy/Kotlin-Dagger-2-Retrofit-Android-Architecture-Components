@@ -15,7 +15,7 @@ import javax.inject.Inject
  * @author Tiany
  * @date 2017/8/7 0007
  */
-class FetchNewsVModel @Inject constructor(val fetchNewsRepository: FetchNewsRepository) : ViewModel() {
+class FetchNewsVModel @Inject constructor(private val fetchNewsRepository: FetchNewsRepository) : ViewModel() {
     private var newsLiveData: LiveData<List<NewsEntity>>
     private val pageLiveData: MutableLiveData<Int> = MutableLiveData()
 

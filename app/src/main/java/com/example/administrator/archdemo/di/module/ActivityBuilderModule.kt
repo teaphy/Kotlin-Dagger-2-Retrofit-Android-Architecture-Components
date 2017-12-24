@@ -6,7 +6,6 @@ import com.example.administrator.archdemo.ui.main.MainActivity
 import com.example.administrator.archdemo.ui.main.MainModule
 import dagger.Binds
 import dagger.Module
-import dagger.android.AndroidInjectionModule
 import dagger.android.ContributesAndroidInjector
 import javax.inject.Singleton
 
@@ -15,13 +14,13 @@ import javax.inject.Singleton
  * @author Tiany
  * @date 2017/8/2 0002
  */
-@Module(includes = [(AndroidInjectionModule::class)])
+@Module
 abstract class ActivityBuilderModule {
 
     @Binds
     @Singleton
     abstract fun application(app: ArchApp): Application
 
-    @ContributesAndroidInjector(modules = arrayOf(MainModule::class))
+    @ContributesAndroidInjector(modules = [MainModule::class])
     abstract fun contributeMainActivity(): MainActivity
 }

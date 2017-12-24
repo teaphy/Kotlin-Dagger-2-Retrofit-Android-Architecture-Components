@@ -5,19 +5,30 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import com.example.administrator.archdemo.R
 import com.example.administrator.archdemo.base.BaseHasFragmentActivity
+import com.example.administrator.archdemo.entity.TestEntity
 import com.example.administrator.archdemo.ui.adapter.VpAdapter
 import com.example.administrator.archdemo.ui.fragment.collectionNews.CollectionNewsFragment
 import com.example.administrator.archdemo.ui.fragment.fetchNews.FetchNewsFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.toast
+import javax.inject.Inject
 
 class MainActivity : BaseHasFragmentActivity() {
 
     val mListTitle: MutableList<String> =  mutableListOf()
     val mListFragment: MutableList<Fragment> = mutableListOf()
     lateinit var vpAdapter: VpAdapter
+
+    @Inject
+    lateinit var testEntity: TestEntity
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+         toast(testEntity.number.toString())
     }
     
     override fun getLayoutId(): Int {
